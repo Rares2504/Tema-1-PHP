@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicație Cinema</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Aplicație de Cumpărare Bilete la Cinema</h1>
+        <p>Descoperiți filmele disponibile și cumpărați bilete rapid și ușor!</p>
+    </header>
+    
+    <main>
+        <section id="description">
+            <h2>Despre Aplicație</h2>
+            <p>Aplicația noastră permite utilizatorilor să vizualizeze filmele și proiecțiile disponibile, să vadă locurile libere și să achiziționeze bilete online. Aplicația include următoarele funcționalități:</p>
+            <ul>
+                <li>Înregistrare și autentificare utilizatori</li>
+                <li>Adăugare de filme și proiecții noi</li>
+                <li>Vizualizarea locurilor libere și ocupate in salile de cinama</li>
+                <li>Achiziționare de bilete online</li>
+            </ul>
+        </section>
+        
+        <section id="how-to-use">
+            <h2>Cum Folosești Aplicația?</h2>
+            <p>Pentru a accesa aplicația și a cumpăra bilete, urmează pașii de mai jos:</p>
+            <ol>
+                <li><strong>Creează un cont</strong>: Înregistrează-te în aplicație completând un formular cu informațiile necesare (nume, email, telefon).</li>
+                <li><strong>Autentifică-te</strong>: După crearea contului, folosește detaliile tale pentru a te loga în aplicație.</li>
+                <li><strong>Pagina Principală</strong>: După logare, vei vedea pagina principală, unde sunt afișate imagini cu toate filmele disponibile în cinema.</li>
+                <li><strong>Selectează un film</strong>: Apasă pe poza filmului pe care dorești să îl vizionezi. Se va deschide o pagină cu un orar al proiecțiilor disponibile pentru acel film.</li>
+                <li><strong>Alege o proiecție</strong>: Selectează data și ora dorită pentru proiecție.</li>
+                <li><strong>Selectează locurile</strong>: O fereastră nouă va afișa locurile libere și ocupate din sala de cinema. Alege locurile care îți convine.</li>
+                <li><strong>Trimite rezervarea</strong>: După selectarea locurilor, apasă pe butonul de confirmare (Submit). Vei primi biletele electronice pe email.</li>
+            </ol>
+            <p>Biletul primit pe email va conține toate detaliile necesare: data, ora, sala și locurile rezervate.</p>
+        </section>
+
+        <section id="roles">
+            <h2>Rolurile în Aplicație</h2>
+            <p>În aplicația noastră există două roluri principale:</p>
+            <ul>
+                <li><strong>Utilizator:</strong> Poate naviga prin filme, vizualiza proiecțiile disponibile și cumpăra bilete.</li>
+                <li><strong>Administrator (Owner):</strong> Poate adăuga și modifica informațiile despre filme și proiecții și gestiona sălile de cinema.</li>
+            </ul>
+        </section>
+
+        <section id="processes">
+            <h2>Procese Principale</h2>
+            <ul>
+                <li><strong>Înregistrare și autentificare:</strong> Utilizatorul creează un cont și se autentifică pentru a accesa funcționalitățile.</li>
+                <li><strong>Adăugarea unui film:</strong> Administratorul poate adăuga un film nou completând informațiile necesare.</li>
+                <li><strong>Vizualizarea proiecțiilor:</strong> Utilizatorul selectează un film și vede programul proiecțiilor.</li>
+                <li><strong>Achiziția biletelor:</strong> Utilizatorul selectează locurile și finalizează achiziția.</li>
+            </ul>
+        </section>
+        
+        <section id="database">
+            <h2>Schema Bazei de Date</h2>
+            <img src="images/diagramaCinema.png" alt="Schema bazei de date pentru aplicația cinema">
+            <p>Schema bazei de date este compusă din următoarele entități:</p>
+            <ul>
+                <li><strong>Film</strong>: Conține informațiile despre filme, inclusiv titlul, genul, durata, limba și ratingul.</li>
+                <li><strong>Sala</strong>: Stochează detalii despre sălile de cinema, cum ar fi capacitatea și tipul de ecran.</li>
+                <li><strong>Proiecție</strong>: Leagă un film de o sală specifică într-o anumită dată și oră, reprezentând o proiecție programată.</li>
+                <li><strong>Client</strong>: Informații despre utilizatori, cum ar fi nume, email și telefon.</li>
+                <li><strong>Bilet</strong>: Înregistrează biletele achiziționate de utilizatori, inclusiv locul și prețul, și face legătura între client, proiecție și locul din sală.</li>
+            </ul>
+        </section>
+
+        <section id="relationships">
+            <h2>Relațiile Dintre Tabele</h2>
+            <p>În baza de date, tabelele sunt interconectate astfel:</p>
+            <ul>
+                <li><strong>Film</strong> și <strong>Proiecție</strong>: Un film poate avea mai multe proiecții, dar o proiecție este asociată unui singur film (relație 1:N).</li>
+                <li><strong>Sala</strong> și <strong>Proiecție</strong>: O sală poate găzdui mai multe proiecții în timp, dar o proiecție este asociată unei singure săli (relație 1:N).</li>
+                <li><strong>Client</strong> și <strong>Bilet</strong>: Un client poate cumpăra mai multe bilete, iar fiecare bilet este asociat unui singur client (relație 1:N).</li>
+                <li><strong>Proiecție</strong> și <strong>Bilet</strong>: O proiecție poate avea mai multe bilete vândute, dar fiecare bilet este asociat unei singure proiecții (relație 1:N).</li>
+            </ul>
+        </section>
+
+        <section id="constraints">
+            <h2>Constrângerile Bazei de Date</h2>
+            <p>Constrângerile definite în baza de date pentru a asigura integritatea datelor sunt:</p>
+            <ul>
+                <li>Într-o sală, toate rândurile au același număr de locuri, asigurând o structură uniformă a sălii.</li>
+                <li>Pentru o anumită proiecție, toate locurile din sală au același preț, asigurând consistența prețurilor.</li>
+                <li>Un client poate achiziționa mai multe bilete într-o singură comandă, dar doar pentru o singură proiecție.</li>
+                <li>Data comenzii nu poate fi ulterioară datei și orei proiecției, pentru a evita cumpărarea biletelor după începerea proiecției.</li>
+                <li>Numărul total de bilete vândute pentru o proiecție nu poate depăși capacitatea totală a sălii, asigurând respectarea limitelor de locuri disponibile.</li>
+            </ul>
+        </section>
+
+        <section id="components">
+            <h2>Arhitectura Aplicației</h2>
+            <p>Aplicația este construită din următoarele componente:</p>
+            <ul>
+                <li><strong>Frontend:</strong> Interfața utilizator este creată cu HTML, CSS și JavaScript pentru o experiență interactivă și responsive.</li>
+                <li><strong>Backend:</strong> Serverul gestionează logica aplicației și interacționează cu baza de date. Acesta este implementat cu PHP.</li>
+                <li><strong>Baza de date:</strong> Stochează informațiile despre filme, proiecții, săli, utilizatori și bilete. Poate fi realizată cu MySQL.</li>
+            </ul>
+        </section>
+
+        <section id="uml">
+            <h2>Diagrama UML - Fluxul Procesului de Achiziție Bilete</h2>
+            <p>Diagrama următoare arată fluxul principal de achiziție a biletelor în aplicație:</p>
+            <img src="images/UML.png" alt="Diagrama UML a procesului de achiziție bilete">
+            <p>Utilizatorul parcurge pași precum deschiderea aplicației, vizualizarea listei de filme, selectarea filmului și proiectiei, 
+                cumpărarea biletelor, și primirea acestora prin e-mail. Dacă utilizatorul nu este logat, este redirecționat către pagina de autentificare 
+                sau creare cont înainte de a continua procesul de achiziție.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Aplicație Cinema. Toate drepturile rezervate.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
